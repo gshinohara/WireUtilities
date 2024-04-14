@@ -36,7 +36,7 @@ namespace WireUtilities.Kernel
         {
             canvas.MouseDown += Canvas_MouseDown;
             canvas.MouseMove += Canvas_MouseMove;
-            TargetChanged += (sender,e) => m_tcs_TargetChanged.TrySetResult(true);
+            TargetChanged += (sender, e) => m_tcs_TargetChanged.TrySetResult(true);
         }
 
         private async void Canvas_MouseDown(object sender, MouseEventArgs e)
@@ -55,7 +55,7 @@ namespace WireUtilities.Kernel
         {
             if (sender is GH_Canvas canvas && canvas.ActiveInteraction is GH_WireInteraction wireInteraction)
             {
-                wireInteraction.WireProperties(out IGH_Param source, out IGH_Param target, out string mode);
+                wireInteraction.WireProperties(out IGH_Param source, out IGH_Param target, out string mode, out bool isDragFromInput);
                 Target = target;
                 if (source != null && target != null)
                     m_tcs_Interaction.TrySetResult(wireInteraction);
